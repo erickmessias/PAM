@@ -1,9 +1,33 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,Button,Image } from 'react-native';
+import { StyleSheet, Text, View,Button,Image, Pressable } from 'react-native';
+import React,{useState}from 'react';
+
+
+
 
 export default function App() {
+  const[jogador,setJogador] = useState(0)
+  const[maquina,setMaquina] = useState(0)
+  
+  const[jogadorImg,setJogadorImg] = useState(0)
+  const[maquinaImg,setMaquinaImg] = useState(0)
+
+
+
+
+
+  const[imagens,setImagens] = useState(
+    [require('./assets/imgs/jogador.png'),
+    require('./assets/imgs/pedra.png'),
+    require('./assets/imgs/papel.png'),
+    require('./assets/imgs/tesoura.png')
+    ]
+ )
+  
   return (
-    <>
+    
+
+    
 
     <View style={styles.container}>
     <View style={styles.titulo}>
@@ -11,25 +35,14 @@ export default function App() {
     </View>
     
     <View style={styles.placar}>
-      <Text style={styles.jogador}>Jogador 01</Text>
-      <Text style={styles.numeros}>0-0</Text>
-      <Text style={styles.jogador}>jogador 02</Text>
+      <Text style={styles.jogador}>{jogador}</Text>
+      <Text style={styles.jogador}>{maquina}</Text>
     </View>
 
     <View style={styles.jogo}>
-      <Image style={styles.ponto}
-       source={require('./assets/imgs/jogador.png')}
-
-      />
-      <Image style={styles.versus}
-      source={require('./assets/imgs/versus.png')}
-
-      />
-      <Image style={styles.ponto}
-       source={require('./assets/imgs/jogador.png')}
-
-
-      />
+      <Image style={styles.ponto} source={imagens[jogadorImg]} />
+      <Image style={styles.versus} source={require('./assets/imgs/versus.png')}/>
+      <Image style={styles.ponto} source={imagens[jogadorImg]}/>
     </View>
 
     <View style={styles.botao}>
@@ -40,15 +53,12 @@ export default function App() {
    </View>
    
    <View style={styles.opcoes}>
-   <Image 
-      style={{ width: 80, height: 80 }}
-      source={require('./assets/imgs/pedra.png')}
-      />
-
+    <Pressable onPress={() => pedra()}>
+      <Image style={{ width: 80, height: 80 }}source={require('./assets/imgs/pedra.png')}/>
+    </Pressable>
    <Image 
       style={{ width: 80, height: 80}}
-      source={require('./assets/imgs/tesoura.png')}
-       />
+      source={require('./assets/imgs/tesoura.png')}/>
     <Image 
       style={{ width: 80, height: 80 }}
       source={require('./assets/imgs/papel.png')}
@@ -59,7 +69,7 @@ export default function App() {
    
    </View>
   
-    </>
+
   );
 }
 const styles = StyleSheet.create({
