@@ -6,10 +6,11 @@ export default function App() {
 
   const [jogador, setJogador] = useState(0)
   const [maquina, setMaquina] = useState(0)
+  
 
  
   const [imagens, setImagens] = useState([
-    require('./assets/imgs/jogador.png'), 
+    require('./assets/imgs/jogador.png'),
     require('./assets/imgs/pedra.png'),  
     require('./assets/imgs/papel.png'),  
     require('./assets/imgs/tesoura.png')  
@@ -34,7 +35,7 @@ export default function App() {
   const papel = () => {
     setJogadorImg(2)
     const valorMaquina = Math.floor(Math.random() * 3) + 1
-    setMaquinaImg(valorMaquina)
+      setMaquinaImg(valorMaquina)
 
     if (valorMaquina == 1) {
       setJogador(jogador + 1)
@@ -46,7 +47,7 @@ export default function App() {
   const tesoura = () => {
     setJogadorImg(3)
     const valorMaquina = Math.floor(Math.random() * 3) + 1
-    setMaquinaImg(valorMaquina)
+    setMaquinaImg( valorMaquina)
 
     if (valorMaquina == 2) {
       setJogador(jogador + 1)
@@ -55,12 +56,19 @@ export default function App() {
     }
   }
 
+ const botao =() => {
+   setJogador(0)
+   setJogadorImg(0)
+   setMaquina(0)
+   setMaquinaImg(0)
+}
+   
   return (
     <>
 
       <View style={styles.container}>
         <View style={styles.titulo}>
-          <Text style={styles.jokempo}>JOKEMPO</Text>
+          <Text style={styles.jokempo}>JOKENPO</Text>
         </View>
 
         <View style={styles.placar}>
@@ -82,36 +90,36 @@ export default function App() {
         </View>
 
         <View style={styles.botao}>
-          <Button
-            title="Nova partida"
-            color="#FF8C42"
-          />
+          <Pressable style={styles.botao} onPress={() => botao()}>
+            <Text style={styles.textButton}>NOVA PARTIDA</Text>
+          </Pressable>
+    
         </View>
 
         <View style={styles.opcoes}>
-          <Pressable onPress={() => pedra()}>
-            <Image
-              style={{ width: 80, height: 80 }}
-              source={require('./assets/imgs/pedra.png')}
+      <Pressable onPress={() => pedra()}>
+         <Image
+       style={{ width: 80, height: 80 }}
+        source={require('./assets/imgs/pedra.png')}
             />
-          </Pressable>
+      </Pressable>
 
-          <Pressable onPress={() => tesoura()}>
-            <Image
-              style={{ width: 80, height: 80 }}
+     <Pressable onPress={() => tesoura()}>
+     <Image
+       style={{ width: 80, height: 80 }}
               source={require('./assets/imgs/tesoura.png')}
             />
           </Pressable>
 
-          <Pressable onPress={() => papel()}>
-            <Image
+      <Pressable onPress={() => papel()}>
+       <Image
               style={{ width: 80, height: 80 }}
               source={require('./assets/imgs/papel.png')}
-            />
-          </Pressable>
-        </View>
+       />
+      </Pressable>
+   </View>
 
-      </View>
+  </View>
 
     </>
   );
@@ -184,8 +192,18 @@ const styles = StyleSheet.create({
 
   botao: {
     width: '70%',
-    marginBottom: 30,
+    marginTop: 10,
+    marginBottom: 12,
     borderRadius: 25,
+    color:'rgb(255, 255, 255)',
+    backgroundColor: "#FF8C42",
+    display: 'flex',
+    alignItems: 'center'
+  },
+
+  textButton:{
+    color:'rgb(255, 255, 255)',
+    fontWeight: '800',
   },
 
   opcoes: {
